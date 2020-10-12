@@ -19,15 +19,13 @@ case $COMMAND in
       ARGS=$2
       echo "Attaching agent to the app with args $ARGS"
       PID=$(jps | grep $APP_NAME | awk '{print $1}')
-      cp $AGENT_PATH .
-      java -jar $DYNAMIC_AGENT_LOADER_PATH $PID DynamicDurationAgent-1.0-SNAPSHOT.jar $ARGS
+      java -jar $DYNAMIC_AGENT_LOADER_PATH $PID $AGENT_PATH $ARGS
     ;;
 
   attach_agent_with_example_args)
       echo "Attaching agent to the app with example args pl.oczadly.example.webapp.matter.control.MatterService"
       PID=$(jps | grep $APP_NAME | awk '{print $1}')
       EXAMPLE_ARGS=pl.oczadly.example.webapp.matter.control.MatterService
-      cp $AGENT_PATH .
-      java -jar $DYNAMIC_AGENT_LOADER_PATH $PID DynamicDurationAgent-1.0-SNAPSHOT.jar $EXAMPLE_ARGS
+      java -jar $DYNAMIC_AGENT_LOADER_PATH $PID $AGENT_PATH $EXAMPLE_ARGS
     ;;
 esac
